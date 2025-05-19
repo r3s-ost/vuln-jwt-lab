@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Register - JWT Lab{% endblock %}
+
+{% block content %}
+<!-- Easter Egg: Try /robots.txt or look for hidden debug endpoints! -->
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h2 class="mb-4 text-center">Register</h2>
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required oninput="checkStrength()">
+                    <div id="strength-meter" class="mt-2"></div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+function checkStrength() {
+    const pwd = document.getElementById('password').value;
+    const meter = document.getElementById('strength-meter');
+    let strength = 0;
+    if (pwd.length >= 8) strength++;
+    if (/[A-Z]/.test(pwd)) strength++;
+    if (/[a-z]/.test(pwd)) strength++;
+    if (/[0-9]/.test(pwd)) strength++;
+    if (/[^A-Za-z0-9]/.test(pwd)) strength++;
+    let msg = '';
+    if (strength <= 1) msg = '<span class="text-danger">Weak</span>';
+    else if (strength <= 3) msg = '<span class="text-warning">Medium</span>';
+    else msg = '<span class="text-success">Strong</span>';
+    meter.innerHTML = 'Strength: ' + msg;
+}
+</script>
+{% endblock %} 

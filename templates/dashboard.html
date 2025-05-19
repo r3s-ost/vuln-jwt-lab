@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Acme Corp Portal{% endblock %}
+
+{% block content %}
+<!-- Easter Egg: Not all vulnerabilities are in the obvious places. -->
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-user-circle text-primary me-2"></i>
+                    User Dashboard
+                </h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="fas fa-user text-primary me-2"></i>
+                                    User Information
+                                </h5>
+                                <p class="card-text">
+                                    <strong>Username:</strong> {{ user.username }}<br>
+                                    <strong>Role:</strong> {{ user.role }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="fas fa-shield-alt text-primary me-2"></i>
+                                    JWT Token
+                                </h5>
+                                <p class="card-text">
+                                    <small class="text-muted">Your current JWT token:</small><br>
+                                    <code id="jwt-token" class="d-block p-2 bg-light rounded">{{ jwt_token or '' }}</code>
+                                </p>
+                                <button class="btn btn-sm btn-outline-primary" onclick="copyToken()">
+                                    <i class="fas fa-copy me-1"></i>Copy Token
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-tasks text-primary me-2"></i>
+                            Available Actions
+                        </h5>
+                        <div class="list-group">
+                            {% if current_role == 'admin' %}
+                            <a href="{{ url_for('admin.admin') }}" class="list-group-item list-group-item-action">
+                                <i class="fas fa-user-shield me-2"></i>
+                                Try to access admin panel
+                            </a>
+                            {% endif %}
+                            <a href="{{ url_for('user.api_user') }}" class="list-group-item list-group-item-action">
+                                <i class="fas fa-code me-2"></i>
+                                View token payload (API)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function copyToken() {
+        const token = document.getElementById('jwt-token').textContent;
+        if (!token) {
+            alert('No token found to copy!');
+            return;
+        }
+        navigator.clipboard.writeText(token).then(() => {
+            alert('Token copied to clipboard!');
+        });
+    }
+</script>
+{% endblock %} 

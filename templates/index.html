@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Acme Corp Portal{% endblock %}
+
+{% block content %}
+<!-- Easter Egg: Sometimes secrets are hidden in plain sight. -->
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <div class="card p-5 mb-4">
+            <h1 class="display-4 mb-4">
+                <i class="fas fa-building text-primary me-3"></i>
+                Welcome to Acme Corp Portal
+            </h1>
+            <p class="lead mb-4">
+                A deliberately vulnerable web application designed to demonstrate real-world JWT security issues.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg px-4 gap-3">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </a>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-outline-primary btn-lg px-4">
+                    <i class="fas fa-user-plus me-2"></i>Register
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

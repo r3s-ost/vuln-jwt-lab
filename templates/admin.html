@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel - Acme Corp Portal{% endblock %}
+
+{% block content %}
+<!-- Easter Egg: Sometimes debug endpoints are left behind... -->
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">
+                    <i class="fas fa-user-shield text-primary me-2"></i>
+                    Admin Panel
+                </h2>
+                <div class="alert alert-success mb-4">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Congratulations! You've successfully exploited the JWT vulnerability and gained admin access.
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-database text-primary me-2"></i>
+                            System Information
+                        </h5>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>JWT Implementation</th>
+                                        <td>PyJWT 2.8.0</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Vulnerable Components</th>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Weak JWT secret key</li>
+                                                <li>Algorithm confusion vulnerability</li>
+                                                <li>Role-based access control bypass</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                            Security Notice
+                        </h5>
+                        <p class="card-text">
+                            This page demonstrates the consequences of JWT vulnerabilities in web applications.
+                            In a real-world scenario, an attacker could:
+                        </p>
+                        <ul>
+                            <li>Access sensitive user data</li>
+                            <li>Modify application settings</li>
+                            <li>Perform administrative actions</li>
+                            <li>Compromise the entire application</li>
+                        </ul>
+                        <p class="card-text">
+                            <strong>Remember:</strong> This is a deliberately vulnerable application for educational purposes.
+                            Always implement proper JWT security measures in production environments.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
