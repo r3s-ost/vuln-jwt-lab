@@ -7,7 +7,9 @@ from .admin import bp as admin_bp
 import os
 import jwt
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            template_folder='../templates',
+            static_folder='../static')
 app.config.from_object(Config)
 
 db.init_app(app)
